@@ -10,5 +10,11 @@
         "Business & Industrial",
         "Jewelry & Watches",
         "Other categories"
+    ],
+    "search": [
+        "laptop",
+        "phone",
+        "watch",
+        "book"
     ]
 }

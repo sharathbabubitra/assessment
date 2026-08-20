@@ -11,10 +11,14 @@ export const test = base.extend<Fixtures>({
     await use(testData.baseUrl);
   },
 
-  page: async ({ page }, use, testInfo) => {
+  page: async ({ page, eBayUrl }, use, testInfo) => {
+
+    // Navigate to eBay before every test
+    await page.goto(eBayUrl);
 
     await use(page);
 
+    // Capture full-page screenshot after the test
     const screenshotName = `${testInfo.title}.png`;
 
     await page.screenshot({

@@ -1,18 +1,19 @@
 import { test, expect } from '../../fixtures/test.fixture';
+import { HomePage } from '../../pages/HomePage';
 
 test.describe("eBay Home Page", () => {
 
-  test('HomePage', async ({ page, eBayUrl }) => {
+  test('HomePage', async ({ page }) => {
 
-    await page.goto(eBayUrl);
-    
+    const homePage = new HomePage(page);
+
     await expect(page).toHaveTitle(/eBay/i);
 
-    await expect(page.getByPlaceholder('Search for anything')).toBeVisible();
+    await expect(homePage.searchBox).toBeVisible();
 
-    await expect(page.locator('span', { hasText: 'Shop by category' })).toBeVisible();
+    await expect(homePage.shopByCategory).toBeVisible();
 
-    await expect(page.getByRole('link', { name: 'Sign in' }).first()).toBeVisible();
+    await expect(homePage.signInLink).toBeVisible();
 
   });
 });

@@ -1,22 +1,23 @@
 import { test, expect } from '../../fixtures/test.fixture';
 import testData from '../../test-data/testData.json';
+import { CategoryPage } from '../../pages/Category';
 
 test.describe('eBay Category', () => {
   
-  test('Category', async ({ page, eBayUrl }) => {
+  test('Category', async ({ page }) => {
 
-    // Get the category value from test data
+    const categoryPage = new CategoryPage(page);
+
     const categoryValue = testData.categories[0];
-    
-    await page.goto(eBayUrl);
-    
-    await page.getByRole('button', { name: 'Shop by category' }).click();
 
-    await page.locator('h3', { hasText: categoryValue }).click();
+    await categoryPage.openCategories();
+    
+    await categoryPage.selectCategory(categoryValue);
 
+    // Verify category page title
     await expect(page).toHaveTitle(new RegExp(categoryValue, 'i'));
 
-    await expect(page.locator('h1', { hasText: categoryValue })).toBeVisible();
-
+    // Verify category heading
+    await expect(categoryPage.getCategoryHeading(categoryValue)).toBeVisible();
   });
 });
