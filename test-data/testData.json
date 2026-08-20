@@ -1,0 +1,14 @@
+{
+    "baseUrl": "https://www.ebay.com",
+    "categories": [
+        "Electronics", 
+        "Motors", 
+        "Clothing & Accessories",
+        "Collectibles & Art",
+        "Home & Garden",
+        "Sporting Goods",
+        "Business & Industrial",
+        "Jewelry & Watches",
+        "Other categories"
+    ]
+}

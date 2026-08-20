@@ -1,8 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../../fixtures/test.fixture';
 
 test.describe('eBay Search', () => {
-  test('Search functionality', async ({ page }) => {
-    await page.goto('https://www.ebay.com/');  
+
+  test('Search', async ({ page, eBayUrl }) => {
+    
+    await page.goto(eBayUrl);
     
     await page.getByPlaceholder('Search for anything').fill('laptop');
 
@@ -15,9 +17,5 @@ test.describe('eBay Search', () => {
 
     await expect(page.getByPlaceholder('Search for anything')).toHaveValue('laptop');
 
-    await page.screenshot({
-      path: 'screenshots/searchResults.png',
-      fullPage: true
-    });
   });
 });

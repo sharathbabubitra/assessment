@@ -1,20 +1,22 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../../fixtures/test.fixture';
+import testData from '../../test-data/testData.json';
 
-test.describe('eBay Category Page', () => {
-  test('Category Page Verification', async ({ page }) => {
-    await page.goto('https://www.ebay.com/');
+test.describe('eBay Category', () => {
+  
+  test('Category', async ({ page, eBayUrl }) => {
+
+    // Get the category value from test data
+    const categoryValue = testData.categories[0];
+    
+    await page.goto(eBayUrl);
     
     await page.getByRole('button', { name: 'Shop by category' }).click();
 
-    await page.locator('h3', { hasText: 'Electronics' }).click();
+    await page.locator('h3', { hasText: categoryValue }).click();
 
-    await expect(page).toHaveTitle(/Electronics/);
+    await expect(page).toHaveTitle(new RegExp(categoryValue, 'i'));
 
-    await expect(page.locator('h1', { hasText: 'Electronics' })).toBeVisible();
+    await expect(page.locator('h1', { hasText: categoryValue })).toBeVisible();
 
-    await page.screenshot({
-        path: 'screenshots/categoryPage.png',
-        fullPage: true
-    });    
   });
 });

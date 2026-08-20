@@ -24,7 +24,7 @@ The Petstore Swagger UI documents `POST /pet`, `GET /pet/{petId}`, `PUT /pet`, a
 
 ## Setup
 
-```bash
+```powershell
 npm init playwright@latest
 npx playwright --version
 ```
@@ -91,9 +91,3 @@ npx playwright show-report
 5. Confirm deletion — GET `/pet/{id}` and verify an appropriate not-found/error response.
 
 The created pet name is dynamically generated so the test does not rely on a hardcoded resource name.
-
-## Notes
-
-- Public websites can change their DOM or introduce anti-bot behavior. The UI selectors are intentionally based on accessible labels/text where possible.
-- If eBay blocks automation in your environment, change `UI_BASE_URL` to another public shopping site and update the three UI tests accordingly.
-- The assessment asks for screenshots in a `verification/` directory. The tests create this directory automatically.

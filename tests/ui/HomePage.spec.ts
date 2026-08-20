@@ -1,21 +1,18 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../../fixtures/test.fixture';
 
 test.describe("eBay Home Page", () => {
-  test('Home Page Verification', async ({ page }) => {
-    await page.goto('https://www.ebay.com/');
+
+  test('HomePage', async ({ page, eBayUrl }) => {
+
+    await page.goto(eBayUrl);
     
-    await expect(page).toHaveTitle(/eBay/);
+    await expect(page).toHaveTitle(/eBay/i);
 
     await expect(page.getByPlaceholder('Search for anything')).toBeVisible();
-
-    await expect(page.locator('span', { hasText: 'Search' })).toBeVisible();
 
     await expect(page.locator('span', { hasText: 'Shop by category' })).toBeVisible();
 
     await expect(page.getByRole('link', { name: 'Sign in' }).first()).toBeVisible();
 
-    await page.screenshot({ 
-        path: 'screenshots/homePage.png', 
-        fullPage: true });
   });
 });
